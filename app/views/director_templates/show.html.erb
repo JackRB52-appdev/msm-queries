@@ -41,7 +41,7 @@
     Image
   </dt>
   <dd>
-    <%=@the_director.image%>
+    <img src = "http://robohash.org/<%= @the_director.image %>">
   </dd>
 
   <dt>
@@ -89,31 +89,34 @@
     </th>
   </tr>
 
+<% @filmography. each do |a_film|%>
   <tr>
     <td>
-      25
+      <%= a_film.id %>
     </td>
 
     <td>
-      <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" style="width:250px;">
+      <img src = "http://robohash.org/<%= a_film.image %>">
     </td>
 
     <td>
-      Star Wars
+      <%= a_film.title %>
     </td>
 
     <td>
-      1977
+      <%= a_film.year %>
     </td>
 
     <td>
-      George Lucas
+    <% d = Director.where({ :id => a_film.director_id})[0]%>
+      <%= d.name %>
     </td>
 
     <td>
-      <a href="/movies/25">
+      <a href="/movies/<%= a_film.id %>">
         Show details
       </a>
     </td>
   </tr>
+  <%end%>
 </table>
