@@ -83,29 +83,28 @@
     </th>
   </tr>
 
-<%@filmography.each do |film|%>
+<%@characters.each do |character|%>
     <tr>
       <td>
-        <%=film.title%>
+        <%movie = Movie.where({:id => character.movie_id}).first %>
+        <%=movie.title%>
       </td>
 
       <td>
-        <%=film.year%>
+        <%=movie.year%>
       </td>
 
       <td>
-
-
-          <%=@the_actor.name%>
+        <%dir = movie.director_id%>
+          <%=Director.where({:id => dir}).first.name%>
       </td>
 
       <td>
-        <%char = Character.where({ :actor_id => @the_actor.id, :movie_id => film.id}).first%>
-        <%=char.name%>
+        <%=character.name%>
       </td>
 
       <td>
-        <a href="/movies/<%=film.id%>">
+        <a href="/movies/<%=movie.id%>">
           Show details
         </a>
       </td>
